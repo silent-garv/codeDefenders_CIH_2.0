@@ -1,6 +1,5 @@
 "use client"
 
-import { AuthGuard } from "@/components/auth/auth-guard"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { useEffect, useState } from "react"
 
@@ -88,10 +87,9 @@ export default function HomePage() {
   }, [])
 
   return (
-    <AuthGuard>
-      <DashboardLayout>
-        <DashboardContent />
-        <div className="p-4">
+    <DashboardLayout>
+      <DashboardContent />
+      <div className="p-4">
           <h2 className="text-xl font-bold mb-2">🔔 Live Alerts</h2>
           <ul className="space-y-2">
             {alerts.map((alert, i) => (
@@ -102,6 +100,5 @@ export default function HomePage() {
           </ul>
         </div>
       </DashboardLayout>
-    </AuthGuard>
   )
 }

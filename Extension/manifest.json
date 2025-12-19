@@ -5,11 +5,11 @@
   "description": "Blocks malicious domains using DNR and background scripts.",
   "permissions": [
     "storage",
-    "webRequest",
-    "webRequestBlocking",
     "downloads",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "declarativeNetRequest",
+    "activeTab"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -19,5 +19,21 @@
   },
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["config.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
 }

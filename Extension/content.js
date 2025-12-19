@@ -72,6 +72,13 @@ function detectPhishingPage() {
     return { detected, details };
 }
 
+// --- Run phishing detection on load and on DOM changes ---
+detectPhishingPage();
+const phishingObserver = new MutationObserver(() => {
+    detectPhishingPage();
+});
+phishingObserver.observe(document.body, { childList: true, subtree: true });
+
 // Checks for insecure cookies (no Secure/HttpOnly flags)
 function checkInsecureCookies() {
     let insecureCookies = [];
